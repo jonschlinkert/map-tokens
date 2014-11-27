@@ -1,0 +1,38 @@
+{
+  "name": "map-tokens",
+  "description": "Register patterns to find tokens in a string and map them to unique IDs, allowing them to be extracted, replaced or restored.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/map-tokens",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/map-tokens.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/map-tokens/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jonschlinkert/map-tokens/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "devDependencies": {
+    "lodash": "^2.4.1",
+    "mocha": "*",
+    "should": "*"
+  },
+  "dependencies": {
+    "randomatic": "^0.1.4"
+  }
+}
