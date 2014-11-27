@@ -1,7 +1,7 @@
 {
   "name": "map-tokens",
   "description": "Register patterns to find tokens in a string and map them to unique IDs, allowing them to be extracted, replaced or restored.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/map-tokens",
   "author": {
     "name": "Jon Schlinkert",
