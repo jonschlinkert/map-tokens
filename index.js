@@ -89,7 +89,7 @@ Tokens.prototype.extract = function(str, patterns) {
     str = null;
   }
 
-  str = str || this.input;
+  str = str ? this._input(str) : this.input;
 
   if (typeof str !== 'string') {
     throw new Error('map-tokens#extract expects a string');
@@ -138,7 +138,7 @@ Tokens.prototype.restore = function(str, obj) {
     str = null;
   }
 
-  str = str || this.content;
+  str = str ? this._input(str) : this.content;
   obj = obj || this;
 
   if (typeof str !== 'string') {
