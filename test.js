@@ -61,4 +61,15 @@ describe('map tokens', function () {
     tokens.restore();
     tokens.result.should.equal('ac ABC ab abc lfa bca ABC axy');
   });
+
+
+  it('should restore tokens using the explicitly passed string and object:', function () {
+    var tokens = new Tokens();
+
+    tokens.restore('abc __TOKEN_ID9H8AY1__ __TOKEN_IDLDO84N__ jkl', {
+      tokens: { __TOKEN_ID9H8AY1__: 'def', __TOKEN_IDLDO84N__: 'ghi' }
+    });
+
+    tokens.result.should.equal('abc def ghi jkl');
+  });
 });

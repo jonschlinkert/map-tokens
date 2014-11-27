@@ -32,11 +32,26 @@ module.exports = Tokens;
  */
 
 function Tokens(str) {
-  this.input = str.replace(/(?:^\uFEFF)|\r/g, '');
+  this.input = str ? this._input(str) : '';
   this.result = '';
   this.patterns = [];
   this.tokens = {};
 }
+
+/**
+ * Register a `regex` pattern to use for matching tokens.
+ *
+ * ```js
+ * tokens.pattern(/def/);
+ * ```
+ *
+ * @param {RegExp} `regex`
+ * @api public
+ */
+
+Tokens.prototype._input = function(str) {
+  return str.replace(/(?:^\uFEFF)|\r/g, '');
+};
 
 /**
  * Register a `regex` pattern to use for matching tokens.
@@ -68,10 +83,20 @@ Tokens.prototype.pattern = function(re) {
  * @api public
  */
 
-Tokens.prototype.extract = function(patterns) {
+Tokens.prototype.extract = function(str, patterns) {
+  if (Array.isArray(str)) {
+    patterns = str;
+    str = null;
+  }
+
+  str = str || this.input;
+
+  if (typeof str !== 'string') {
+    throw new Error('map-tokens#extract expects a string');
+  }
+
   patterns = patterns || this.patterns;
   var len = patterns.length;
-  var str = this.input;
   var i = 0;
   var o = {};
   o.tokens = {};
@@ -107,10 +132,20 @@ Tokens.prototype.extract = function(patterns) {
  * @api public
  */
 
-Tokens.prototype.restore = function(obj) {
+Tokens.prototype.restore = function(str, obj) {
+  if (typeof str !== 'string') {
+    obj = str;
+    str = null;
+  }
+
+  str = str || this.content;
   obj = obj || this;
 
-  this.result = obj.content;
+  if (typeof str !== 'string') {
+    throw new Error('map-tokens#extract expects a string');
+  }
+
+  this.result = str;
   var tokens = obj.tokens;
   var keys = Object.keys(tokens);
   var len = keys.length - 1;
