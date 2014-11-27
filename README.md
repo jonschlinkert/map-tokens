@@ -40,6 +40,23 @@ console.log(tokens.result);
 //=> 'AAA "bar" baz quux'
 ```
 
+Or, you can save the result of `.extract()` and explicitly pass the result to the `.restore()` method later:
+
+```js
+var tokens = new Tokens();
+
+tokens.restore('abc __TOKEN_ID9H8AY1__ __TOKEN_IDLDO84N__ jkl', {
+  tokens: {
+    __TOKEN_ID9H8AY1__: 'def',
+    __TOKEN_IDLDO84N__: 'ghi'
+  }
+});
+
+console.log(tokens.result);
+//=> 'abc def ghi jkl'
+```
+
+
 ## API
 ### [Tokens](index.js#L34)
 
@@ -52,7 +69,7 @@ var Tokens = require('map-tokens');
 var tokens = new Tokens(string);
 ```
 
-### [.pattern](index.js#L52)
+### [._input](index.js#L52)
 
 Register a `regex` pattern to use for matching tokens.
 
@@ -62,7 +79,17 @@ Register a `regex` pattern to use for matching tokens.
 tokens.pattern(/def/);
 ```
 
-### [.extract](index.js#L71)
+### [.pattern](index.js#L67)
+
+Register a `regex` pattern to use for matching tokens.
+
+* `regex` **{RegExp}**    
+
+```js
+tokens.pattern(/def/);
+```
+
+### [.extract](index.js#L86)
 
 Run the registered patterns on the `input` string, which inserts tokens in place of matching strings.
 
@@ -74,7 +101,7 @@ tokens.extract();
 tokens.extract([/def/]);
 ```
 
-### [.restore](index.js#L110)
+### [.restore](index.js#L135)
 
 Restore previously inserted tokens.
 
